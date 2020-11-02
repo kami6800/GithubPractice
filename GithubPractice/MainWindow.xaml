@@ -4,9 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GithubPractice"
+        xmlns:viewmodel="clr-namespace:ViewModels;assembly=ViewModels"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <TextBox x:Name="usernameBox" HorizontalAlignment="Left" Margin="300,110,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="280,147,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+        <Label x:Name="ErrorLabel" Content="" HorizontalAlignment="Left" Margin="350,141,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>
