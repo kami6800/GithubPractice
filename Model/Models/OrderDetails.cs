@@ -33,15 +33,16 @@ namespace Model.Models
         public short _quantity;
         public float Discount { get; set; }
 
-        //public OrderDetails()
-        //{
-        //    TotalPrice = 5;
-        //}
-
         public virtual Orders Order { get; set; }
         public virtual Products Product { get; set; }
 
-        //[NotMapped]
-        //public decimal TotalPrice { get; set; }
+        [NotMapped]
+        public decimal TotalPrice
+        {
+            get
+            {
+                return UnitPrice * Quantity;
+            }
+        }
     }
 }

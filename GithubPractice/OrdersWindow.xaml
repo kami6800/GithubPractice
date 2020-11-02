@@ -48,7 +48,7 @@
         </StackPanel>
         <DataGrid Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Path=SelectedOrder.OrderDetails}" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Product" Binding="{Binding ProductId}" Width="50*"/>
+                <DataGridTextColumn Header="Product" Binding="{Binding Product.ProductName}" Width="50*"/>
                 <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" Width="20*"/>
                 <DataGridTextColumn Header="Total price" Binding="{Binding TotalPrice}" Width="30*"/>
             </DataGrid.Columns>

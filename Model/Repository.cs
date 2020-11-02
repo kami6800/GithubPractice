@@ -23,13 +23,13 @@ namespace Model
         public List<Orders> GetCompletedOrdersByCustomer(string customerId)
         {
             return context.Orders.Where(o => o.CustomerId == customerId && o.ShippedDate!=null)
-                .Include(o=>o.OrderDetails).ToList();
+                .Include(o=>o.OrderDetails).ThenInclude(c=>c.Product).ToList();
         }
 
         public List<Orders> GetCurrentOrderByCustomer(string customerId)
         {
             return context.Orders.Where(o => o.CustomerId == customerId && o.ShippedDate == null)
-                .Include(o => o.OrderDetails).ToList();
+                .Include(o => o.OrderDetails).ThenInclude(c => c.Product).ToList();
         }
     }
 }
