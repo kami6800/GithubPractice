@@ -26,5 +26,15 @@ namespace GithubPractice
             Customer = customer;
             DataContext = new OrdersViewModel(customer);
         }
+
+        private void ordersGrid_LostFocus(object sender, RoutedEventArgs e)
+        {
+            ordersGrid.SelectedItem = null;
+        }
+
+        private void ordersGridOld_LostFocus(object sender, RoutedEventArgs e)
+        {
+            ordersGridOld.SelectedItem = null;
+        }
     }
 }

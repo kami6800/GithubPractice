@@ -27,12 +27,12 @@
                 <RowDefinition Height="50*"/>
                 <RowDefinition Height="50*"/>
             </Grid.RowDefinitions>
-        <DataGrid x:Name="ordersGrid" ItemsSource="{Binding CurrentOrders}" AutoGenerateColumns="False" SelectedItem="{Binding SelectedOrder}">
+        <DataGrid x:Name="ordersGrid" ItemsSource="{Binding CurrentOrders}" AutoGenerateColumns="False" SelectedItem="{Binding SelectedOrder}" LostFocus="ordersGrid_LostFocus">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Current orders" Binding="{Binding OrderId}" Width="100*"/>
             </DataGrid.Columns>
         </DataGrid>
-            <DataGrid x:Name="ordersGridOld" ItemsSource="{Binding CompletedOrders}" AutoGenerateColumns="False" Grid.Row="1" SelectedItem="{Binding SelectedOrder}">
+            <DataGrid x:Name="ordersGridOld" ItemsSource="{Binding CompletedOrders}" AutoGenerateColumns="False" Grid.Row="1" SelectedItem="{Binding SelectedOrder}" LostFocus="ordersGridOld_LostFocus">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Finished orders" Binding="{Binding OrderId}" Width="100*"/>
             </DataGrid.Columns>
