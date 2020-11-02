@@ -17,11 +17,27 @@
             <ColumnDefinition Width="20*"></ColumnDefinition>
             <ColumnDefinition Width="80*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <DataGrid ItemsSource="{Binding AllOrders}" AutoGenerateColumns="False">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70*"/>
+            <RowDefinition Height="30*"/>
+        </Grid.RowDefinitions>
+        <DataGrid x:Name="ordersGrid" ItemsSource="{Binding AllOrders}" AutoGenerateColumns="False" Grid.RowSpan="2">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Order number" Binding="{Binding OrderId}" Width="100*"/>
             </DataGrid.Columns>
-            </DataGrid>
-
+        </DataGrid>
+        <StackPanel Grid.Column="1">
+        <TextBlock Text="{Binding ElementName=ordersGrid, Path=SelectedItem.OrderDate,
+                          StringFormat='Order date: {0}'}"/>
+        <TextBlock Text="{Binding ElementName=ordersGrid, Path=SelectedItem.RequiredDate,
+                          StringFormat='Required delivery date: {0}'}"/>
+        <TextBlock Text="{Binding ElementName=ordersGrid, Path=SelectedItem.ShippedDate,
+                          StringFormat='Shipped date: {0}'}"/>
+        </StackPanel>
+        <DataGrid Grid.Row="1" Grid.Column="1" ItemsSource="{Binding ElementName=ordersGrid, Path=SelectedItem}">
+            <DataGrid.Columns>
+                
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>
