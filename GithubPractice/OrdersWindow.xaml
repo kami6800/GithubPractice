@@ -21,22 +21,36 @@
             <RowDefinition Height="70*"/>
             <RowDefinition Height="30*"/>
         </Grid.RowDefinitions>
-        <DataGrid x:Name="ordersGrid" ItemsSource="{Binding AllOrders}" AutoGenerateColumns="False" Grid.RowSpan="2">
+        
+            <Grid Grid.RowSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50*"/>
+                <RowDefinition Height="50*"/>
+            </Grid.RowDefinitions>
+        <DataGrid x:Name="ordersGrid" ItemsSource="{Binding CurrentOrders}" AutoGenerateColumns="False" SelectedItem="{Binding SelectedOrder}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Order number" Binding="{Binding OrderId}" Width="100*"/>
+                <DataGridTextColumn Header="Current orders" Binding="{Binding OrderId}" Width="100*"/>
             </DataGrid.Columns>
         </DataGrid>
-        <StackPanel Grid.Column="1">
-        <TextBlock Text="{Binding ElementName=ordersGrid, Path=SelectedItem.OrderDate,
+            <DataGrid x:Name="ordersGridOld" ItemsSource="{Binding CompletedOrders}" AutoGenerateColumns="False" Grid.Row="1" SelectedItem="{Binding SelectedOrder}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Finished orders" Binding="{Binding OrderId}" Width="100*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+            </Grid>
+            <StackPanel Grid.Column="1">
+        <TextBlock Text="{Binding Path=SelectedOrder.OrderDate,
                           StringFormat='Order date: {0}'}"/>
-        <TextBlock Text="{Binding ElementName=ordersGrid, Path=SelectedItem.RequiredDate,
+            <TextBlock Text="{Binding Path=SelectedOrder.RequiredDate,
                           StringFormat='Required delivery date: {0}'}"/>
-        <TextBlock Text="{Binding ElementName=ordersGrid, Path=SelectedItem.ShippedDate,
+            <TextBlock Text="{Binding Path=SelectedOrder.ShippedDate,
                           StringFormat='Shipped date: {0}'}"/>
         </StackPanel>
-        <DataGrid Grid.Row="1" Grid.Column="1" ItemsSource="{Binding ElementName=ordersGrid, Path=SelectedItem}">
+        <DataGrid Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Path=SelectedOrder.OrderDetails}" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                
+                <DataGridTextColumn Header="Product" Binding="{Binding ProductId}" Width="50*"/>
+                <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" Width="20*"/>
+                <DataGridTextColumn Header="Total price" Binding="{Binding TotalPrice}" Width="30*"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

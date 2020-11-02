@@ -1,4 +1,5 @@
-﻿using Model.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using Model.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,9 +20,16 @@ namespace Model
             return context.Orders.ToList();
         }
 
-        public List<Orders> GetOrdersByCustomer(string customerId)
+        public List<Orders> GetCompletedOrdersByCustomer(string customerId)
         {
-            return context.Orders.Where(o => o.CustomerId == customerId).ToList();
+            return context.Orders.Where(o => o.CustomerId == customerId && o.ShippedDate!=null)
+                .Include(o=>o.OrderDetails).ToList();
+        }
+
+        public List<Orders> GetCurrentOrderByCustomer(string customerId)
+        {
+            return context.Orders.Where(o => o.CustomerId == customerId && o.ShippedDate == null)
+                .Include(o => o.OrderDetails).ToList();
         }
     }
 }
